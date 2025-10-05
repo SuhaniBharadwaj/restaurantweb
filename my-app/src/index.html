@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <!-- Boxicons CDN (for icons) -->
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <header id="header">
+        <a href="#" class="logo"><i class='bx bxs-bowl-hot'></i> Foodie</a>
+        <div id="menu-icon" tabindex="0" aria-label="Toggle navigation" role="button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="#home"><i class='bx bx-home'></i> Home</a></li>
+                <li><a href="#about"><i class='bx bx-info-circle'></i> About</a></li>
+                <li><a href="#shop"><i class='bx bx-store'></i> Shop</a></li>
+                <li><a href="#menu"><i class='bx bx-food-menu'></i> Menu</a></li>
+                <li><a href="#gallery"><i class='bx bx-images'></i> Gallery</a></li>
+                <li><a href="#contact"><i class='bx bx-phone'></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <div class="home-container">
+            <div class="home-text">
+                <span>Welcome To Our</span>
+                <h1>Healthy Food <br> Collection!</h1>
+                <p>What are your taste bud calling for?</p>
+                <a href="#menu" id="menu-button" class="btn">Our Menu</a>
+            </div>
+            <div class="home-img">
+                <img src="image2.gif" alt="Healthy Food">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h1>Today Deal's</h1>
+        <div class="about-container">
+            <!--Box 1-->
+            <div class="about-box">
+                <div class="box-img">
+                    <img src="fruit-salas.jpeg" alt="Fruit Salad">
+                </div>
+                <h3>Fruit Salad</h3>
+                <h2>$ 10.4</h2>
+            </div>
+            <!--box-2-->
+            <div class="about-box">
+                <div class="box-img">
+                    <img src="fruit-juice.avif" alt="Fruit Juice">
+                </div>
+                <h3>Fruit Juice</h3>
+                <h2>$ 8.4</h2>
+            </div>
+            <!--box 3-->
+            <div class="about-box">
+                <div class="box-img">
+                    <img src="gsalad.jpeg" alt="Green Salad">
+                </div>
+                <h3>Green Salad</h3>
+                <h2>$ 12.4</h2>
+            </div>
+            <!--box 4-->
+            <div class="about-box">
+                <div class="box-img">
+                    <img src="fsmoothie.jpeg" alt="Fruit Smoothie">
+                </div>
+                <h3>Fruit Smoothie</h3>
+                <h2>$ 9.4</h2>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Automatic sliding effect for the "about" section
+        const aboutContainer = document.querySelector('.about-container');
+        let scrollAmount = 0;
+
+        function slideAboutSection() {
+            const boxWidth = document.querySelector('.about-box').offsetWidth;
+            scrollAmount += boxWidth;
+
+            if (scrollAmount >= aboutContainer.scrollWidth) {
+                scrollAmount = 0; // Reset to the beginning
+            }
+
+            aboutContainer.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        setInterval(slideAboutSection, 3000); // Slide every 3 seconds
+    </script>
+
+    <!-- Shop Section -->
+    <section class="shop" id="shop">
+        <div class="heading">
+            <h2>Food Shop</h2>
+            <p>What's your flavor explosion waiting for?</p>
+        </div>
+        <div class="shop-container" id="shop-container">
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="gsalad2.jpeg" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$14.2</h2>
+                <i class="bx bxs-cart-add " onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="1.jpeg" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$14.2</h2>
+                <i class="bx bxs-cart-add " onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="2.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$10.1</h2>
+                <i class="bx bxs-cart-add " onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="3.jpeg" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$15.3</h2>
+                <i class="bx bxs-cart-add" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="4.jpeg" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$10.2</h2>
+                <i class="bx bxs-cart-add" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="5.jpeg" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$16.3</h2>
+                <i class="bx bxs-cart-add" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="a1.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$12.5</h2>
+                <i class="bx bxs-cart-add cart-icon" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="a2.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$13.8</h2>
+                <i class="bx bxs-cart-add" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="a3.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$11.9</h2>
+                <i class="bx bxs-cart-add cart-icon" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="c1.avif" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$14.7</h2>
+                <i class="bx bxs-cart-add" onclick="addToCart(this)"></i>
+
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="c2.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$13.8</h2>
+                <i class="bx bxs-cart-add" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="d3.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$11.9</h2>
+                <i class="bx bxs-cart-add "onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="d2.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$14.7</h2>
+                <i class="bx bxs-cart-add "onclick="addToCart(this)"></i>
+                
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="s2.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$13.8</h2>
+                <i class="bx bxs-cart-add" onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="s1.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$11.9</h2>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="s3.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$14.7</h2>
+                <i class="bx bxs-cart-add " onclick="addToCart(this)"></i>
+                
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="m5.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$13.8</h2>
+                <i class="bx bxs-cart-add " onclick="addToCart(this)"></i>
+            </div>
+            <div class="shop-box">
+                <div class="shop-img">
+                    <img src="m3.webp" alt="">
+                </div>
+                <h3>Tasty Food</h3>
+                <h2>$11.9</h2>
+                <i class="bx bxs-cart-add " onclick="addToCart(this)"></i>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function addToCart(element) {
+            const shopBox = element.closest('.shop-box');
+            const itemName = shopBox.querySelector('h3').textContent;
+            const itemPrice = shopBox.querySelector('h2').textContent;
+            const itemImage = shopBox.querySelector('img').src;
+
+            // Create a cart item object with a unique ID
+            const cartItem = {
+                id: Date.now(), // Unique identifier
+                name: itemName,
+                price: itemPrice,
+                image: itemImage
+            };
+
+            // Retrieve existing cart items from localStorage
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push(cartItem);
+
+            // Save updated cart items to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            // Update the cart section dynamically
+            updateCartSection();
+        }
+
+        function removeFromCart(itemId) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const updatedCartItems = cartItems.filter(item => item.id !== itemId);
+
+            // Save updated cart items to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
+            // Update the cart section dynamically
+            updateCartSection();
+        }
+
+        // Add event listener to dynamically created remove buttons
+        function updateCartSection() {
+            const cartContainer = document.querySelector('.cart-items-container');
+            cartContainer.innerHTML = ''; // Clear existing cart items
+
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.forEach(item => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.classList.add('cart-item');
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>${item.price}</p>
+                    <button class="btn remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+                `;
+                cartContainer.appendChild(cartItemElement);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize the cart section
+            updateCartSection();
+        });
+    </script>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu" style="background: url('about.webp') no-repeat center center/cover; padding: 50px 20px;">
+        <h1 style="text-align: center; color: lightgreen">Menu</h1>
+        <p style="text-align: center; color:black">Explore our delicious offerings.</p>
+        <div class="menu-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px;">
+            <!-- Appetizers -->
+            <div class="menu-category" style="text-align: center; background: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 10px;">
+                <h3>Appetizers</h3>
+                <div class="menu-item">
+                    <img src="a1.webp" alt="Spring roll" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Spring roll</p>
+                </div>
+                <div class="menu-item">
+                    <img src="a2.webp" alt="Paneer Tikka" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Paneer Tikka</p>
+                </div>
+                <div class="menu-item">
+                    <img src="a3.webp" alt="Nacho with Cheese" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Nacho with Cheese</p>
+                </div>
+                <div class="menu-item">
+                    <img src="a4.avif" alt="Fruit-Salad" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Fruit-Salad</p>
+                </div>
+            </div>
+            <!-- Soup -->
+            <div class="menu-category" style="text-align: center; background: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 10px;">
+                <h3>Soup</h3>
+                <div class="menu-item">
+                    <img src="s1.webp" alt="Tomato Soup" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Tomato Soup</p>
+                </div>
+                <div class="menu-item">
+                    <img src="s2.webp" alt="Sweet Corn Soup" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Sweet Corn Soup</p>
+                </div>
+                <div class="menu-item">
+                    <img src="s3.webp" alt="Hot and Sour Soup" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Hot and Sour Soup</p>
+                </div>
+                <div class="menu-item">
+                    <img src="s4.webp" alt="Palak Soup" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Palak Soup</p>
+                </div>
+            </div>
+            <!-- Main Course: Vegetarian -->
+            <div class="menu-category" style="text-align: center; background: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 10px;">
+                <h3>Main Course - Vegetarian</h3>
+                <div class="menu-item">
+                    <img src="m-v1.webp" alt="Paneer Butter Masala" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Paneer Butter Masala</p>
+                </div>
+                <div class="menu-item">
+                    <img src="m2.webp" alt="Veg Biryani" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Veg Biryani</p>
+                </div>
+                <div class="menu-item">
+                    <img src="m5.webp" alt="Dal Makhani" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Dal Makhani</p>
+                </div>
+                <div class="menu-item">
+                    <img src="m3.webp" alt="Chole Bhature" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Chole Bhature</p>
+                </div>
+            </div>
+            <!-- Chinese -->
+            <div class="menu-category" style="text-align: center; background: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 10px;">
+                <h3>Chinese</h3>
+                <div class="menu-item">
+                    <img src="c1.avif" alt="Hakka Noodles" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Hakka Noodles</p>
+                </div>
+                <div class="menu-item">
+                    <img src="c2.webp" alt="Manchurian" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Manchurian</p>
+                </div>
+                <div class="menu-item">
+                    <img src="c4.webp" alt="Chili Paneer" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Chili Paneer</p>
+                </div>
+            </div>
+            <!-- Desserts -->
+            <div class="menu-category" style="text-align: center; background: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 10px;">
+                <h3>Desserts</h3>
+                <div class="menu-item">
+                    <img src="d1.webp" alt="Gulab Jamun" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Gulab Jamun</p>
+                </div>
+                <div class="menu-item">
+                    <img src="d2.webp" alt="Ice Cream" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Ice Cream</p>
+                </div>
+                <div class="menu-item">
+                    <img src="d4.webp" alt="Gajar Halwa" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Gajar Halwa</p>
+                </div>
+                <div class="menu-item">
+                    <img src="d3.webp" alt="Rasgulla" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    <p>Rasgulla</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+    <section id="gallery">
+        <h2>Image Gallery</h2>
+        <div class="gallery">
+            <!-- Wrap only gallery images in anchor tags -->
+            <a href="1.jpeg" target="_blank"><img src="1.jpeg" alt=""></a>
+            <a href="m2.webp" target="_blank"><img src="m2.webp" alt=""></a>
+            <a href="m5.webp" target="_blank"><img src="m5.webp" alt=""></a>
+            <a href="a1.webp" target="_blank"><img src="a1.webp" alt=""></a>
+            <a href="a2.webp" target="_blank"><img src="a2.webp" alt=""></a>
+            <a href="frsald.avif" target="_blank"><img src="frsalad.avif" alt=""></a>
+            <a href="2.webp" target="_blank"><img src="2.webp" alt=""></a>
+            <a href="3.jpeg" target="_blank"><img src="3.jpeg" alt=""></a>
+            <a href="4.jpeg" target="_blank"><img src="4.jpeg" alt=""></a>
+            <a href="b1.webp" target="_blank"><img src="b1.webp" alt=""></a>
+            <a href="gsalad.jpeg" target="_blank"><img src="gsalad.jpeg" alt=""></a>
+            <a href="d3.webp" target="_blank"><img src="d3.webp" alt=""></a>
+            <a href="im3.jpeg" target="_blank"><img src="im3.jpeg" alt=""></a>
+            <a href="im2.jpeg" target="_blank"><img src="im2.jpeg" alt=""></a>
+            <a href="m2.webp" target="_blank"><img src="m2.webp" alt=""></a>
+            <a href="fsmoothie.jpeg" target="_blank"><img src="fsmoothie.jpeg" alt=""></a>
+        </div>
+    </section>
+    <!-- Cart Section -->
+    <section class="store-cart" id="cart">
+        <h2>Your Cart</h2>
+        <div class="cart-items-container">
+            <div class="cart-item">
+                <img src="1.jpeg" alt="Cart Item 1">
+                <h3> Burger</h3>
+                <p>$10.00</p>
+                <button class="btn">Remove</button>
+            </div>
+            <div class="cart-item">
+                <img src="4.jpeg" alt="Cart Item 2">
+                <h3>French Fries</h3>
+                <p>$15.00</p>
+                <button class="btn">Remove</button>
+            </div>
+            <!-- Add more cart items as needed -->
+        </div>
+    </section>
+
+    <!-- Order Now Section -->
+    <section id="order-now">
+        <h2>Order Now</h2>
+        <form id="order-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="person" required>
+            <label for="item">Item:</label>
+            <input type="text" id="item" name="item" required>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+            <label for="number">Phone Number:</label>
+            <input type="number" id="number" name="number" required>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="place" required>
+            <button type="submit">Submit Order</button>
+        </form>
+        <a href="order-now.html" class="btn" style="margin-top: 20px; display: inline-block;">View All Orders</a>
+    </section>
+
+        <script>
+            document.getElementById('order-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent navigation
+                
+                // Collect order details from form fields
+                const order = {
+                    name: document.getElementById('name').value,
+                    item: document.getElementById('item').value,
+                    quantity: document.getElementById('quantity').value,
+                    phone: document.getElementById('number').value,
+                    address: document.getElementById('address').value
+                };
+
+                // Save the order to localStorage
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                orders.push(order);
+                localStorage.setItem('orders', JSON.stringify(orders));
+
+                alert('Order submitted successfully!');
+                document.getElementById('order-form').reset(); // Reset the form
+          });
+
+            // Add event listeners to cart buttons
+            document.querySelectorAll('.bxs-cart-add').forEach((button) => {
+                button.addEventListener('click', function () {
+                    const shopBox = button.closest('.shop-box');
+                    const itemName = shopBox.querySelector('h3').textContent;
+                    const itemPrice = shopBox.querySelector('h2').textContent;
+                    const itemImage = shopBox.querySelector('img').src;
+
+                    // Create a cart item element
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${itemImage}" alt="${itemName}">
+                        <h3>${itemName}</h3>
+                        <p>${itemPrice}</p>
+                        <button class="btn remove-btn">Remove</button>
+                    `;
+
+                    // Append the cart item to the cart section
+                    const cartContainer = document.querySelector('.cart-items-container');
+                    if (cartContainer) {
+                        cartContainer.appendChild(cartItem);
+
+                        // Add event listener to the remove button
+                        cartItem.querySelector('.remove-btn').addEventListener('click', function () {
+                            cartItem.remove(); // Remove the cart item from the DOM
+                        });
+
+                        alert(`${itemName} has been added to your cart!`);
+                    } else {
+                        console.error('Cart container not found!');
+                    }
+                });
+            });
+
+            // Add event listeners to existing remove buttons in the cart section
+            document.querySelectorAll('.cart-item .btn').forEach((removeButton) => {
+                removeButton.addEventListener('click', function () {
+                    const cartItem = removeButton.closest('.cart-item');
+                    cartItem.remove(); // Remove the cart item from the DOM
+                });
+            });
+        </script>
+    <!-- Offers Section -->
+    <section id="offers">
+        <h2>Special Offers</h2>
+        <div class="filter-buttons">
+            <button onclick="filterOffers('all')">All</button>
+            <button onclick="filterOffers('pizza')">Pizza</button>
+            <button onclick="filterOffers('dessert')">Dessert</button>
+            <button onclick="filterOffers('drinks')">Drinks</button>
+        </div>
+        <div class="offers-container">
+            <div class="offer-box active" data-category="pizza">
+                <div class="offer-box-inner">
+                    <div class="offer-box-front">
+                        <h3>Buy 1 Get 1 Free</h3>
+                        <p>On all pizzas every Friday!</p>
+                        <div class="countdown" id="countdown1"></div>
+                    </div>
+                    <div class="offer-box-back">
+                        <h3>Hurry Up!</h3>
+                        <p>Offer ends soon.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="offer-box active" data-category="dessert">
+                <div class="offer-box-inner">
+                    <div class="offer-box-front">
+                        <h3>Free Dessert</h3>
+                        <p>With every main course on Wednesdays.</p>
+                        <div class="countdown" id="countdown2"></div>
+                    </div>
+                    <div class="offer-box-back">
+                        <h3>Don't Miss Out!</h3>
+                        <p>Limited time only.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="offer-box active" data-category="drinks">
+                <div class="offer-box-inner">
+                    <div class="offer-box-front">
+                        <h3>50% Off</h3>
+                        <p>On all beverages during Happy Hours!</p>
+                        <div class="countdown" id="countdown3"></div>
+                    </div>
+                    <div class="offer-box-back">
+                        <h3>Don't Miss Out!</h3>
+                        <p>Offer valid from 4 PM to 6 PM daily.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="offer-box active" data-category="dessert">
+                <div class="offer-box-inner">
+                    <div class="offer-box-front">
+                        <h3>Buy 2 Get 1 Free</h3>
+                        <p>On all desserts this weekend!</p>
+                        <div class="countdown" id="countdown4"></div>
+                    </div>
+                    <div class="offer-box-back">
+                        <h3>Sweet Deal!</h3>
+                        <p>Indulge in your favorite desserts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar">
+        <h2>Specialties Calendar</h2>
+        <div class="calendar-container">
+            <div class="calendar-box">
+                <i class="bx bxs-pizza icon"></i>
+                <div class="day">Monday</div>
+                <div class="specialty">Chef's Special Pasta</div>
+                <div class="tooltip">Try our creamy Alfredo pasta!</div>
+            </div>
+            <div class="calendar-box">
+                <i class="bx bxs-dish icon"></i>
+                <div class="day">Tuesday</div>
+                <div class="specialty">Grilled Chicken Fiesta</div>
+                <div class="tooltip">Perfectly grilled with spices.</div>
+            </div>
+            <div class="calendar-box">
+                <i class="bx bxs-cake icon"></i>
+                <div class="day">Wednesday</div>
+                <div class="specialty">Blueberry Cheesecake</div>
+                <div class="tooltip">A creamy delight with fresh blueberries.</div>
+            </div>
+            <div class="calendar-box">
+                <i class="bx bxs-cake icon"></i>
+                <div class="day">Thursday</div>
+                <div class="specialty">Chocolate Lava Cake</div>
+                <div class="tooltip">A molten chocolate delight!</div>
+            </div>
+            <div class="calendar-box">
+                <i class="bx bxs-coffee icon"></i>
+                <div class="day">Friday</div>
+                <div class="specialty">Special Brew Coffee</div>
+                <div class="tooltip">Perfectly brewed for coffee lovers.</div>
+            </div>
+            <div class="calendar-box">
+                <i class="bx bxs-burger icon"></i>
+                <div class="day">Saturday</div>
+                <div class="specialty">Gourmet Burgers</div>
+                <div class="tooltip">Juicy and flavorful burgers.</div>
+            </div>
+            <div class="calendar-box">
+                <i class="bx bxs-pizza icon"></i>
+                <div class="day">Sunday</div>
+                <div class="specialty">Family Pizza Feast</div>
+                <div class="tooltip">Enjoy a large pizza with your family!</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Countdown Timer
+        function startCountdown(id, endDate) {
+            const countdownElement = document.getElementById(id);
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownElement.textContent = "Expired";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        // Initialize countdowns
+        startCountdown("countdown1", new Date().getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
+        startCountdown("countdown2", new Date().getTime() + 3 * 24 * 60 * 60 * 1000); // 3 days from now
+        startCountdown("countdown3", new Date().getTime() + 2 * 24 * 60 * 60 * 1000); // 2 days from now
+        startCountdown("countdown4", new Date().getTime() + 7 * 24 * 60 * 60 * 1000); // 7 days from now
+
+        // Filter Offers
+        function filterOffers(category) {
+            const offers = document.querySelectorAll(".offer-box");
+            offers.forEach(offer => {
+                if (category === "all" || offer.dataset.category === category) {
+                    offer.classList.add("active");
+                } else {
+                    offer.classList.remove("active");
+                }
+            });
+        }
+    </script>
+    <!-- Review Section -->
+    <section id="review">
+        <h2>Leave a Review</h2>
+        <form id="review-form">
+            <label for="review-name">Name:</label>
+            <input type="text" id="review-name" name="name" required>
+            
+            <label for="review-stars">Rating:</label>
+            <div id="review-stars" class="stars">
+                <i class="bx bxs-star" data-value="1"></i>
+                <i class="bx bxs-star" data-value="2"></i>
+                <i class="bx bxs-star" data-value="3"></i>
+                <i class="bx bxs-star" data-value="4"></i>
+                <i class="bx bxs-star" data-value="5"></i>
+            </div>
+            <input type="hidden" id="review-rating" name="rating" required>
+            
+            <label for="review-message">Message:</label>
+            <textarea id="review-message" name="message" rows="5" required></textarea>
+
+            <label for="review-photo">Upload Photo:</label>
+            <input type="file" id="review-photo" name="photo" accept="image/*">
+
+            <button type="submit" class="btn">Submit Review</button>
+        </form>
+        <div id="reviews-container">
+            <h3>Customer Reviews</h3>
+            <div class="reviews-list">
+                <!-- Reviews will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stars = document.querySelectorAll('#review-stars .bx');
+            const ratingInput = document.getElementById('review-rating');
+            const reviewsContainer = document.querySelector('.reviews-list');
+
+            // Load reviews from localStorage
+            function loadReviews() {
+                const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+                savedReviews.forEach(review => {
+                    addReviewToSections(review.name, review.rating, review.message, review.photo);
+                });
+            }
+
+            // Save reviews to localStorage
+            function saveReview(name, rating, message, photo) {
+                const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+                savedReviews.push({ name, rating, message, photo });
+                localStorage.setItem('reviews', JSON.stringify(savedReviews));
+            }
+
+            // Add review to both sections
+            function addReviewToSections(name, rating, message, photo) {
+                const review = document.createElement('div');
+                review.classList.add('review-item');
+                review.innerHTML = `
+                    <h4>${name}</h4>
+                    <div class="stars">
+                        ${`<i class="bx bxs-star"></i>`.repeat(rating)}
+                        ${`<i class="bx bx-star"></i>`.repeat(5 - rating)}
+                    </div>
+                    <p>${message}</p>
+                    <div class="review-photo">
+                        ${photo ? `<img src="${photo}" alt="Review Photo" style="max-width: 100px; max-height: 100px;">` : `<p>Not Uploaded</p>`}
+                    </div>
+                `;
+                reviewsContainer.appendChild(review);
+            }
+
+            // Handle star rating selection
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    const rating = index + 1; // Calculate the rating based on the clicked star
+                    ratingInput.value = rating;
+
+                    // Highlight the selected stars
+                    stars.forEach((s, i) => {
+                        if (i < rating) {
+                            s.classList.add('bxs-star');
+                            s.classList.remove('bx-star');
+                        } else {
+                            s.classList.add('bx-star');
+                            s.classList.remove('bxs-star');
+                        }
+                    });
+                });
+            });
+
+            // Handle review form submission
+            document.getElementById('review-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const name = document.getElementById('review-name').value;
+                const rating = ratingInput.value;
+                const message = document.getElementById('review-message').value;
+                const photoInput = document.getElementById('review-photo');
+                const photo = photoInput.files[0] ? URL.createObjectURL(photoInput.files[0]) : null;
+
+                // Save the review to localStorage
+                saveReview(name, rating, message, photo);
+
+                // Add the review to the sections
+                addReviewToSections(name, rating, message, photo);
+
+                // Reset the form
+                document.getElementById('review-form').reset();
+                ratingInput.value = '';
+                stars.forEach(s => s.classList.add('bx-star')); // Reset stars
+                stars.forEach(s => s.classList.remove('bxs-star'));
+            });
+
+            // Load reviews on page load
+            loadReviews();
+        });
+    </script>
+
+
+    <!--customer-->
+<section class="customer" id="customer">
+    <div class="heading">
+        <h2>Our Customers</h2>
+        <p>Customer Reviews</p>
+    </div>
+    <div class="customer-container">
+        <div class="box">
+            <img src="cust1.jpeg" alt="">
+            <div class="stars">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star-half"></i>
+            </div>
+            <p>Our Customer</p>
+            <h3>Zayn Malik</h3>
+            <p>The portions were generous without being overwhelming. I left feeling satisfied but not stuffed.</p>
+        </div>
+        <div class="box">
+            <img src="cust2.jpeg" alt="">
+            <div class="stars">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star-half"></i>
+            </div>
+            <p>Our Customer</p>
+            <h3>Jennie Shireen</h3>
+            <p>"The food was amazing! I loved every bite."</p>
+        </div>
+        <div class="box">
+            <img src="cust3.jpeg" alt="">
+            <div class="stars">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+            </div>
+            <p>Our Customer</p>
+            <h3>Jennie Ronae</h3>
+            <p>"The ingredients tasted incredibly fresh, and the steak was cooked to perfection."</p>
+        </div>
+        <div class="box">
+            <img src="cust4.jpeg" alt="">
+            <div class="stars">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star-half"></i>
+            </div>
+            <p>Our Customer</p>
+            <h3>Ashish Bhatia</h3>
+            <p>"The food was absolutely delicious – every dish was perfectly prepared and beautifully presented. The flavors were so fresh and balanced!"</p>
+        </div>
+    </div>
+</section>
+<!--Contact us -->
+<section class="contact" id="contact">
+    <div class="heading">
+        <h2>Contact Us</h2>
+        <p>Stay in touch with your favorite restaurant.</p>
+    </div>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p>We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out to us.</p>
+            <div class="address">
+                <i class="bx bxs-map"><span>Street: 70/17th Fl, Raheja Chamber, Nariman Point, Mumbai</span></i>
+                <i class="bx bxs-phone"><span>Phone: +91 1234567890</span></i>
+                <i class="bx bxs-envelope"><span>contact@foodie.com</span></i>
+            </div>
+            <div class="social">
+                <a href="#"><i class="bx bxl-facebook"></i></a>
+                <a href="#"><i class="bx bxl-twitter"></i></a>
+                <a href="#"><i class="bx bxl-instagram"></i></a>
+                <a href="#"><i class="bx bxl-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="contact-form">
+            <form id="contact-form" action="#" method="POST"> <!-- Changed action to "#" -->
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Your Subject" required>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </div>
+    </div>
+    <a href="messages.html" class="btn" style="margin-top: 20px; display: inline-block;">View All Messages</a> <!-- Button to messages.html -->
+    </section>
+
+    
+    
+  <!--Copyright-->
+    <section class="copyright">
+        <div class="copyright">
+            <p>&#169 All Right Reserved</p>
+        </div>
+    </section>
+<script src="script.js"></script>
+</body> 
+</html>
+    </section>
+<script src="script.js"></script>
+</body> 
+</html>

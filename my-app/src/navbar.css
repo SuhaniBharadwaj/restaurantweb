@@ -1,0 +1,17 @@
+/* Add spacing between navbar items */
+.navbar li {
+    display: inline-block; /* Ensure items stay in a horizontal line */
+    margin-right: 20px; /* Add gap between items */
+}
+.navbar li:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+/* Adjust logo size */
+.logo {
+    margin-right: 50px; /* Increased the value to create more space */
+}
+.logo img {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}

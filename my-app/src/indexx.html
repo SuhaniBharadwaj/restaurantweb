@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foodie — Healthy Food Collection</title>
+
+  <!-- Boxicons (only CSS needed for icons) -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+
+  <!-- Simple, contained styles (move to style.css if you want) -->
+  <style>
+    :root{
+      --accent:#3CB371;
+      --muted:#666;
+      --card-bg: #fff;
+      --glass: rgba(255,255,255,0.85);
+      --shadow: 0 6px 18px rgba(0,0,0,0.08);
+      --max-width:1200px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:#f6f7fb;color:#222;line-height:1.45}
+
+    header{background:linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));position:sticky;top:0;z-index:999;box-shadow:var(--shadow)}
+    .header-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-weight:700}
+    .logo img{width:40px;height:40px;object-fit:cover;border-radius:6px}
+
+    /* Navbar */
+    nav.navbar ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+    nav.navbar a{display:inline-block;padding:8px 10px;text-decoration:none;color:var(--muted);border-radius:6px}
+    nav.navbar a:hover{color:var(--accent);background:rgba(60,179,113,0.06)}
+
+    /* Dropdown */
+    .dropdown{position:relative}
+    .dropdown-menu{position:absolute;left:0;top:calc(100% + 8px);display:none;background:var(--card-bg);padding:8px;border-radius:8px;box-shadow:var(--shadow);min-width:160px}
+    .dropdown:hover .dropdown-menu{display:block}
+
+    /* Mobile menu button */
+    #menu-icon{display:none;cursor:pointer;padding:6px;border-radius:8px}
+    #menu-icon span{display:block;width:22px;height:2px;background:#222;margin:4px 0;border-radius:2px}
+
+    /* Layout sections */
+    section{max-width:var(--max-width);margin:28px auto;padding:0 16px}
+    .heading h2{margin:0 0 6px}
+    .btn{background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+
+    /* About / Today Deals */
+    .about-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+    .about-box{background:var(--card-bg);padding:12px;border-radius:10px;box-shadow:var(--shadow);text-align:center}
+    .about-box img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+
+    /* Shop grid */
+    .shop-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .shop-box{background:var(--card-bg);border-radius:12px;padding:12px;box-shadow:var(--shadow);position:relative}
+    .shop-img img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .shop-box h3{margin:8px 0 4px}
+    .shop-box h2{margin:0 0 8px;color:var(--muted);font-weight:600}
+    .add-to-cart{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,0.06);border-radius:8px;padding:8px;border:none;cursor:pointer}
+
+    /* Offers */
+    .offers-container{display:flex;flex-wrap:wrap;gap:16px}
+    .offer-box{width:260px;height:160px;background:linear-gradient(135deg,#fff,#f7fff7);border-radius:12px;padding:12px;box-shadow:var(--shadow);position:relative}
+    .offer-box-inner{height:100%}
+
+    /* Calendar */
+    .calendar-container{display:flex;flex-wrap:wrap;gap:12px}
+    .calendar-box{background:var(--card-bg);padding:12px;border-radius:8px;min-width:150px;box-shadow:var(--shadow);position:relative;text-align:center}
+    .calendar-box .icon{font-size:28px;margin-bottom:6px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+    .gallery a img{width:100%;height:90px;object-fit:cover;border-radius:8px}
+
+    /* Cart */
+    .cart-items-container{display:grid;gap:8px}
+    .cart-item{display:flex;gap:10px;align-items:center;background:var(--card-bg);padding:8px;border-radius:8px}
+    .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+
+    /* Reviews */
+    .reviews-list{display:grid;gap:10px}
+    .review-item{background:var(--card-bg);padding:10px;border-radius:8px;box-shadow:var(--shadow)}
+    .stars i{margin-right:3px}
+
+    /* Utilities */
+    .filter-buttons{margin:10px 0}
+    .filter-buttons button{border:1px solid #eee;padding:8px 10px;border-radius:8px;background:transparent;cursor:pointer}
+
+    /* Responsive */
+    @media (max-width:900px){
+      nav.navbar{display:none}
+      #menu-icon{display:block}
+      nav.navbar.active{display:block;position:absolute;left:16px;right:16px;top:60px;background:var(--card-bg);padding:12px;border-radius:10px;box-shadow:var(--shadow)}
+      nav.navbar ul{flex-direction:column;gap:8px}
+      .offers-container{justify-content:center}
+    }
+
+    /* New styles for enhanced sections */
+    .menu { background: url('about.webp') no-repeat center center/cover; padding: 50px 20px; }
+    .menu h1, .menu p { color: lightgreen; text-align: center; }
+    .messages { background: url('frsalad.avif') no-repeat center center/cover; padding: 50px 20px; }
+    .messages h2 { color: #16b978; text-align: center; }
+    .customer { background: url('gsalad2.jpeg') no-repeat center center/cover; padding: 50px 20px; }
+    .customer .heading h2 { color: #16b978; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="#"><img src="image.jpeg" alt="Foodie"><span>Foodie</span></a>
+
+      <div id="menu-icon" aria-label="Toggle navigation" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav class="navbar" id="navbar" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#customer">Customer</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#more">More</a>
+            <ul class="dropdown-menu">
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#order-now">Order Now</a></li>
+              <li><a href="#offers">Offers</a></li>
+              <li><a href="#calendar">Calendar</a></li>
+              <li><a href="#cart">Cart</a></li>
+              <li><a href="#review">Review</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home -->
+  <section class="home" id="home">
+    <div style="max-width:var(--max-width);margin:0 auto;display:flex;gap:18px;align-items:center;padding:20px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:260px">
+        <span>Welcome To Our</span>
+        <h1>Healthy Food Collection!</h1>
+        <p>What are your taste buds calling for?</p>
+        <a href="#menu" id="menu-button" class="btn">Our Menu</a>
+      </div>
+      <div style="flex:1;min-width:260px;text-align:center">
+        <img src="image2.gif" alt="Healthy Food" style="max-width:360px;width:100%;border-radius:10px;box-shadow:var(--shadow);">
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Today Deals -->
+  <section class="about" id="about">
+    <h1 style="text-align:center">Today Deals</h1>
+    <div class="about-container">
+      <div class="about-box"><img src="fruit-salas.jpeg" alt="Fruit Salad"><h3>Fruit Salad</h3><h2>$10.40</h2></div>
+      <div class="about-box"><img src="fruit-juice.avif" alt="Fruit Juice"><h3>Fruit Juice</h3><h2>$8.40</h2></div>
+      <div class="about-box"><img src="gsalad.jpeg" alt="Green Salad"><h3>Green Salad</h3><h2>$12.40</h2></div>
+      <div class="about-box"><img src="fsmoothie.jpeg" alt="Fruit Smoothie"><h3>Fruit Smoothie</h3><h2>$9.40</h2></div>
+    </div>
+  </section>
+
+  <!-- Shop -->
+  <section class="shop" id="shop">
+    <div class="heading"><h2>Food Shop</h2><p>What's your flavor explosion waiting for?</p></div>
+
+    <div class="shop-container" id="shop-container">
+      <!-- Example shop box: keep repeating as needed -->
+      <div class="shop-box" data-name="Tasty Food" data-price="$14.20">
+        <div class="shop-img"><img src="gsalad2.jpeg" alt="Tasty Food"></div>
+        <h3>Tasty Food</h3>
+        <h2>$14.20</h2>
+        <button class="add-to-cart" type="button" aria-label="Add Tasty Food to cart"><i class="bx bx-cart"></i></button>
+      </div>
+
+      <div class="shop-box" data-name="Tasty Food" data-price="$14.20">
+        <div class="shop-img"><img src="1.jpeg" alt="Tasty Food"></div>
+        <h3>Tasty Food</h3>
+        <h2>$14.20</h2>
+        <button class="add-to-cart" type="button" aria-label="Add Tasty Food to cart"><i class="bx bx-cart"></i></button>
+      </div>
+
+      <div class="shop-box" data-name="Tasty Food" data-price="$10.10">
+        <div class="shop-img"><img src="2.webp" alt="Tasty Food"></div>
+        <h3>Tasty Food</h3>
+        <h2>$10.10</h2>
+        <button class="add-to-cart" type="button" aria-label="Add Tasty Food to cart"><i class="bx bx-cart"></i></button>
+      </div>
+
+      <!-- Add rest of the items similarly (I fixed/normalized price formatting where possible) -->
+
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2>Image Gallery</h2>
+    <div class="gallery">
+      <a href="1.jpeg" target="_blank"><img src="1.jpeg" alt=""></a>
+      <a href="m2.webp" target="_blank"><img src="m2.webp" alt=""></a>
+      <a href="m5.webp" target="_blank"><img src="m5.webp" alt=""></a>
+      <a href="a1.webp" target="_blank"><img src="a1.webp" alt=""></a>
+      <a href="a2.webp" target="_blank"><img src="a2.webp" alt=""></a>
+      <a href="frsalad.avif" target="_blank"><img src="frsalad.avif" alt=""></a>
+      <a href="2.webp" target="_blank"><img src="2.webp" alt=""></a>
+      <a href="3.jpeg" target="_blank"><img src="3.jpeg" alt=""></a>
+      <a href="4.jpeg" target="_blank"><img src="4.jpeg" alt=""></a>
+      <a href="b1.webp" target="_blank"><img src="b1.webp" alt=""></a>
+      <a href="gsalad.jpeg" target="_blank"><img src="gsalad.jpeg" alt=""></a>
+      <a href="d3.webp" target="_blank"><img src="d3.webp" alt=""></a>
+      <a href="im3.jpeg" target="_blank"><img src="im3.jpeg" alt=""></a>
+      <a href="im2.jpeg" target="_blank"><img src="im2.jpeg" alt=""></a>
+      <a href="fsmoothie.jpeg" target="_blank"><img src="fsmoothie.jpeg" alt=""></a>
+    </div>
+  </section>
+
+  <!-- Cart -->
+  <section class="store-cart" id="cart">
+    <h2>Your Cart</h2>
+    <div class="cart-items-container" id="cart-items-container">
+      <!-- dynamically rendered -->
+    </div>
+    <div style="margin-top:12px">
+      <strong>Total: </strong><span id="cart-total">$0.00</span>
+    </div>
+  </section>
+
+  <!-- Order Now -->
+  <section id="order-now">
+    <h2>Order Now</h2>
+    <form id="order-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="person" required>
+      <label for="item">Item:</label>
+      <input type="text" id="item" name="item" required>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+      <label for="number">Phone Number:</label>
+      <input type="tel" id="number" name="number" required>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="place" required>
+      <button type="submit" class="btn">Submit Order</button>
+    </form>
+    <a href="order-now.html" class="btn" style="margin-top: 20px; display: inline-block;">View All Orders</a>
+  </section>
+
+  <!-- Offers -->
+  <section id="offers">
+    <h2>Special Offers</h2>
+    <div class="filter-buttons">
+      <button onclick="filterOffers('all')">All</button>
+      <button onclick="filterOffers('pizza')">Pizza</button>
+      <button onclick="filterOffers('dessert')">Dessert</button>
+      <button onclick="filterOffers('drinks')">Drinks</button>
+    </div>
+    <div class="offers-container">
+      <div class="offer-box" data-category="pizza">
+        <div class="offer-box-inner">
+          <h3>Buy 1 Get 1 Free</h3>
+          <p>On all pizzas every Friday!</p>
+          <div class="countdown" id="countdown1"></div>
+        </div>
+      </div>
+
+      <div class="offer-box" data-category="dessert">
+        <div class="offer-box-inner">
+          <h3>Free Dessert</h3>
+          <p>With every main course on Wednesdays.</p>
+          <div class="countdown" id="countdown2"></div>
+        </div>
+      </div>
+
+      <div class="offer-box" data-category="drinks">
+        <div class="offer-box-inner">
+          <h3>50% Off</h3>
+          <p>On all beverages during Happy Hours!</p>
+          <div class="countdown" id="countdown3"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Calendar -->
+  <section id="calendar">
+    <h2>Specialties Calendar</h2>
+    <div class="calendar-container">
+      <div class="calendar-box"><i class="bx bxs-pizza icon"></i><div class="day">Monday</div><div class="specialty">Chef's Special Pasta</div></div>
+      <div class="calendar-box"><i class="bx bxs-dish icon"></i><div class="day">Tuesday</div><div class="specialty">Grilled Chicken Fiesta</div></div>
+      <div class="calendar-box"><i class="bx bxs-cake icon"></i><div class="day">Wednesday</div><div class="specialty">Blueberry Cheesecake</div></div>
+      <div class="calendar-box"><i class="bx bxs-cake icon"></i><div class="day">Thursday</div><div class="specialty">Chocolate Lava Cake</div></div>
+      <div class="calendar-box"><i class="bx bxs-coffee icon"></i><div class="day">Friday</div><div class="specialty">Special Brew Coffee</div></div>
+      <div class="calendar-box"><i class="bx bxs-burger icon"></i><div class="day">Saturday</div><div class="specialty">Gourmet Burgers</div></div>
+      <div class="calendar-box"><i class="bx bxs-pizza icon"></i><div class="day">Sunday</div><div class="specialty">Family Pizza Feast</div></div>
+    </div>
+  </section>
+
+  <!-- Review -->
+  <section id="review">
+    <h2>Leave a Review</h2>
+    <form id="review-form">
+      <label for="review-name">Name:</label>
+      <input type="text" id="review-name" name="name" required>
+
+      <label for="review-stars">Rating:</label>
+      <div id="review-stars" class="stars">
+      <label for="review-message">Message:</label>
+      <textarea id="review-message" name="message" rows="5" required></textarea>
+
+      <label for="review-photo">Upload Photo:</label>
+      <input type="file" id="review-photo" name="photo" accept="image/*">
+
+      <button type="submit" class="btn">Submit Review</button>
+    </form>
+
+    <div id="reviews-container">
+      <h3>Customer Reviews</h3>
+      <div class="reviews-list"></div>
+    </div>
+  </section>
+
+  <footer style="padding:20px;text-align:center;background:#fff;margin-top:28px;box-shadow:var(--shadow)">
+    <p>&copy; All Rights Reserved — Foodie</p>
+  </footer>
+
+  <!-- Scripts (all in one place) -->
+  <script>
+    // Small helper: format price string like "$14.2" -> number
+    const parsePrice = (priceStr) => {
+      if (!priceStr) return 0;
+      return Number(priceStr.toString().replace(/[^0-9.-]+/g, '')) || 0;
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuIcon = document.getElementById('menu-icon');
+      const navbar = document.getElementById('navbar');
+
+      menuIcon.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+      });
+
+      menuIcon.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') menuIcon.click();
+      });
+
+      /* ------------------ CART: localStorage-backed ------------------ */
+      const CART_KEY = 'cartItems';
+      const cartContainer = document.getElementById('cart-items-container');
+      const cartTotalEl = document.getElementById('cart-total');
+
+      function getCart(){
+        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+      }
+      function saveCart(items){
+        localStorage.setItem(CART_KEY, JSON.stringify(items));
+      }
+
+      function renderCart(){
+        const items = getCart();
+        cartContainer.innerHTML = '';
+        let total = 0;
+        items.forEach(item => {
+          total += parsePrice(item.price);
+          const el = document.createElement('div');
+          el.className = 'cart-item';
+          el.innerHTML = `
+            <img src="${item.image || 'placeholder.png'}" alt="${item.name}">
+            <div style="flex:1">
+              <h4 style="margin:0">${item.name}</h4>
+              <div style="color:var(--muted)">${item.price}</div>
+            </div>
+            <div>
+              <button class="btn remove-btn" data-id="${item.id}">Remove</button>
+            </div>
+          `;
+          cartContainer.appendChild(el);
+        });
+        cartTotalEl.textContent = `$${total.toFixed(2)}`;
+
+        // attach remove listeners
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = Number(btn.dataset.id);
+            const updated = getCart().filter(i => i.id !== id);
+            saveCart(updated);
+            renderCart();
+          });
+        });
+      }
+
+      // Add-to-cart from shop: event delegation
+      document.getElementById('shop-container').addEventListener('click', (e) => {
+        const btn = e.target.closest('.add-to-cart');
+        if (!btn) return;
+        const shopBox = btn.closest('.shop-box');
+        if (!shopBox) return;
+        const name = shopBox.dataset.name || shopBox.querySelector('h3')?.textContent || 'Item';
+        const price = shopBox.dataset.price || shopBox.querySelector('h2')?.textContent || '$0.00';
+        const img = shopBox.querySelector('img')?.src || '';
+        const item = { id: Date.now(), name, price, image: img };
+        const items = getCart();
+        items.push(item);
+        saveCart(items);
+        renderCart();
+        alert(`${name} added to cart`);
+      });
+
+      // Initialize cart UI
+      renderCart();
+
+      /* ------------------ Order form (localStorage) ------------------ */
+      document.getElementById('order-form').addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        const order = {
+          name: document.getElementById('name').value,
+          item: document.getElementById('item').value,
+          quantity: Number(document.getElementById('quantity').value) || 1,
+          phone: document.getElementById('number').value,
+          address: document.getElementById('address').value,
+          createdAt: new Date().toISOString()
+        };
+        const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        alert('Order submitted successfully!');
+        ev.target.reset();
+      });
+
+      /* ------------------ Offers countdowns ------------------ */
+      function startCountdown(id, msFromNow){
+        const el = document.getElementById(id);
+        if (!el) return;
+        const end = Date.now() + msFromNow;
+        const interval = setInterval(() => {
+          const now = Date.now();
+          const d = end - now;
+          if (d <= 0) { el.textContent = 'Expired'; clearInterval(interval); return; }
+          const days = Math.floor(d / (24*3600*1000));
+          const hours = Math.floor((d % (24*3600*1000))/(3600*1000));
+          const mins = Math.floor((d % (3600*1000))/(60*1000));
+          const secs = Math.floor((d % (60*1000))/1000);
+          el.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+        }, 1000);
+      }
+
+      startCountdown('countdown1', 5*24*3600*1000);
+      startCountdown('countdown2', 3*24*3600*1000);
+      startCountdown('countdown3', 2*24*3600*1000);
+
+      /* ------------------ Offer filter ------------------ */
+      window.filterOffers = (category) => {
+        const offers = document.querySelectorAll('.offer-box');
+        offers.forEach(o => {
+          if (category === 'all' || o.dataset.category === category) o.style.display = '';
+          else o.style.display = 'none';
+        });
+      };
+
+      /* ------------------ Reviews (stores base64 image in localStorage) ------------------ */
+      const reviewsListEl = document.querySelector('.reviews-list');
+
+      function renderReviews(){
+        const saved = JSON.parse(localStorage.getItem('reviews')||'[]');
+        reviewsListEl.innerHTML = '';
+        saved.forEach(r => {
+          const node = document.createElement('div'); node.className='review-item';
+          const rating = parseInt(r.rating) || 0;
+          node.innerHTML = `\n            <h4>${r.name}</h4>\n            <div class="stars">${'<i class="bx bxs-star"></i>'.repeat(rating)}${'<i class="bx bx-star"></i>'.repeat(5-rating)}</div>\n            <p>${r.message}</p>\n            <div class="review-photo">${r.photo?`<img src="${r.photo}" alt="photo" style="max-width:100px;border-radius:6px">`:'<p>Not uploaded</p>'}</div>\n          `;
+          reviewsListEl.appendChild(node);
+        });
+      }
+
+      // Convert input file to base64 and return Promise
+      function fileToBase64(file){
+        return new Promise((resolve, reject) => {
+          if (!file) return resolve(null);
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // Load existing reviews
+      renderReviews();
+
+      const starEls = document.querySelectorAll('#review-stars .bx');
+      const ratingInput = document.getElementById('review-rating');
+
+      starEls.forEach((star, idx) => {
+        star.addEventListener('click', () => {
+          const rating = idx+1;
+          ratingInput.value = rating;
+          starEls.forEach((s,i) => s.className = i < rating ? 'bx bxs-star' : 'bx bx-star');
+        });
+      });
+
+      document.getElementById('review-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('review-name').value;
+        const rating = document.getElementById('review-rating').value || 0;
+        const message = document.getElementById('review-message').value;
+        const file = document.getElementById('review-photo').files[0];
+        const photo = await fileToBase64(file);
+        const saved = JSON.parse(localStorage.getItem('reviews')||'[]');
+        saved.push({name, rating, message, photo});
+        localStorage.setItem('reviews', JSON.stringify(saved));
+        renderReviews();
+        e.target.reset();
+        ratingInput.value='';
+        starEls.forEach(s => s.className = 'bx bx-star');
+      });
+
+    }); // DOMContentLoaded end
+  </script>
+</body>
+</html>

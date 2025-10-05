@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Order</h1>
+    </header>
+    <main>
+        <section id="loading-spinner" style="display: none; text-align: center;">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </section>
+        <section id="order-details">
+            <h2>Order Summary</h2>
+            <p id="order-summary">Loading...</p>
+        </section>
+        <section>
+            <table id="orders-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Orders will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 <span style="color: lightseagreen;">Foodie</span>. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const ordersTableBody = document.querySelector('#orders-table tbody');
+
+            orders.forEach((order, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.name}</td>
+                    <td>${order.item}</td>
+                    <td>${order.quantity}</td>
+                    <td>${order.phone}</td>
+                    <td>${order.address}</td>
+                    <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+                `;
+                ordersTableBody.appendChild(row);
+            });
+
+            ordersTableBody.addEventListener('click', function (event) {
+                if (event.target.classList.contains('remove-btn')) {
+                    const index = event.target.getAttribute('data-index');
+                    orders.splice(index, 1);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    event.target.closest('tr').remove();
+                }
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

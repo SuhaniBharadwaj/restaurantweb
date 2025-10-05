@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Customer Messages</h1>
+        <p>View all the messages submitted by customers.</p>
+    </header>
+    <main>
+        <section>
+            <input type="text" id="search-bar" placeholder="Search messages..." style="width: 100%; padding: 10px; margin-bottom: 20px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="messages-table">
+                    <!-- Messages will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer></footer>
+        <p>&copy; 2023 Foodie. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Filter messages based on search input
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', () => {
+            const filter = searchBar.value.toLowerCase();
+            const rows = document.querySelectorAll('#messages-table tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
